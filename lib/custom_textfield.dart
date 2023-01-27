@@ -1,161 +1,213 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CustomTextField extends StatelessWidget {
-  BuildContext context;
-  TextEditingController? myController;
-  ValueChanged<String>? onChanged;
-  List<TextInputFormatter>? inputFormatters;
-  TextInputAction? textInputAction;
-  TextInputType? textInputType;
-  String? placeHolderMessage;
-  String? errorMessage;
-  String? hintText;
-  bool obscureText;
-  bool enable;
-  FocusNode? myFocus;
-  int? maxLine;
-  int? maxLength;
-  double? height;
-  double? width;
-  Widget? preFix;
-  Widget? sufFix;
-  Color bgColor;
-  Color? cursorColor;
-  final InputBorder? focusedInputBorder;
-  final InputBorder? focusedErrorBorder;
-  final InputBorder? border;
-  final InputBorder? enabledInputBorder;
-  final InputBorder? disabledInputBorder;
-  Color? colorHint;
-  Function()? onEditingComplete;
-  BoxDecoration? boxDecoration;
-  Color? borderColor;
-  double? borderRadius;
+class CommonInputFormField extends StatelessWidget {
+  final TextEditingController textEditingController;
+  final String? Function(String?)? validator;
 
-  CustomTextField({
-    Key? key,
-    required this.context,
-    required this.myController,
-    this.onChanged,
-    this.textInputType,
-    this.textInputAction,
-    this.focusedInputBorder,
-    this.focusedErrorBorder,
-    this.border,
-    this.enabledInputBorder,
-    this.disabledInputBorder,
-    this.placeHolderMessage = "",
-    this.errorMessage = "",
-    this.hintText = "",
-    this.obscureText = false,
-    this.enable = true,
-    this.inputFormatters,
-    this.myFocus,
-    this.cursorColor,
-    this.maxLine,
-    this.height,
-    this.width,
-    this.preFix,
-    this.sufFix,
-    required this.bgColor,
-    this.boxDecoration,
-    this.maxLength,
-    this.colorHint,
-    this.borderColor,
-    this.onEditingComplete,
-    this.borderRadius,
-  }) : super(key: key);
+  final String? placeholderImage;
+  final double? placeholderImageHeight;
+  final double? placeholderImageWidth;
+  final double? placeholderImageHorizontalPadding;
+  final String? placeholderText;
+  final TextStyle? placeholderTextStyle;
+  final String? hintText;
+  final TextStyle? hintTextStyle;
+  final double? fieldWidth;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final double? borderWidth;
+  final BorderRadius? borderRadius;
+  final TextStyle? fieldTextStyle;
+  final int? maxLines;
+  final int? maxLength;
+  final List<TextInputFormatter>? textInputFormatter;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
+  final TextCapitalization? textCapitalization;
+  final bool? isEnable;
+  final Widget? prefixWidget;
+  final Widget? suffixWidget;
+  final InputDecoration? inputDecoration;
+  final bool? obscureText;
+  final double? bottomFieldMargin;
+  final Function(dynamic text)? onChanged;
+  final Widget? suffixLabel;
+  final Color? cursorColor;
+  final bool? enableInteractiveSelection;
+  final bool? readOnly;
+  final EdgeInsets? contentPadding;
+  final EdgeInsets? placeholderBottom;
+
+  const CommonInputFormField(
+      {Key? key,
+        required this.textEditingController,
+        required this.validator,
+        this.placeholderImage,
+        this.placeholderImageHeight,
+        this.placeholderImageWidth,
+        this.placeholderImageHorizontalPadding,
+        this.placeholderText,
+        this.placeholderTextStyle,
+        this.hintText,
+        this.hintTextStyle,
+        this.fieldWidth,
+        this.backgroundColor,
+        this.borderColor,
+        this.borderWidth,
+        this.borderRadius,
+        this.fieldTextStyle,
+        this.maxLines,
+        this.maxLength,
+        this.textInputFormatter,
+        this.textInputAction,
+        this.textInputType,
+        this.textCapitalization,
+        this.isEnable,
+        this.prefixWidget,
+        this.suffixWidget,
+        this.inputDecoration,
+        this.obscureText,
+        this.bottomFieldMargin,
+        this.onChanged,
+        this.suffixLabel,
+        this.cursorColor,
+        this.enableInteractiveSelection,
+        this.readOnly,
+        this.contentPadding,
+        this.placeholderBottom})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: height ?? 60,
-          color: bgColor,
-          // margin: EdgeInsets.symmetric(vertical: 0.h, horizontal: 15.w),
-          // padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 20.w),
-          decoration: boxDecoration ??
-              BoxDecoration(
-                  borderRadius: BorderRadius.circular(borderRadius ?? 0),
-                  border: Border.all(color: borderColor ?? Colors.grey)),
-          alignment: Alignment.center,
-          child: TextFormField(
-            autofocus: false,
-            maxLines: maxLine ?? 1,
-            enabled: enable,
-            controller: myController,
-            onChanged: onChanged,
-            focusNode: myFocus,
-            cursorColor: cursorColor ?? Colors.black,
-            obscureText: obscureText,
-            keyboardType: textInputType,
-            textInputAction: textInputAction,
-            maxLength: maxLength,
-            onEditingComplete: onEditingComplete,
-            style: const TextStyle(
-                fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),
-            inputFormatters: inputFormatters,
-            textAlign: TextAlign.start,
-            decoration: InputDecoration(
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              isDense: true,
-              suffixIcon: sufFix ?? const Offstage(),
-              contentPadding: const EdgeInsetsDirectional.fromSTEB(10, 8, -30, 8),
-              prefix: preFix,
-              labelText: placeHolderMessage,
-              alignLabelWithHint: true,
-              hintStyle: TextStyle(
-                  // fontFamily: fontFamily,
-                  fontSize: 16,
-                  color: colorHint ?? Colors.black,
-                  fontWeight: FontWeight.w400),
-              labelStyle: TextStyle(
-                  // fontFamily: fontFamily,
-                  fontSize: 15,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w100),
-              errorStyle: TextStyle(color: Colors.black),
-              focusedBorder: focusedInputBorder ??
-                  OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(color: Colors.transparent),
+        if (((placeholderImage ?? '').isNotEmpty) ||
+            ((placeholderText ?? '').isNotEmpty))
+          Padding(
+            padding: placeholderBottom ?? EdgeInsets.only(bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if ((placeholderImage ?? '').isNotEmpty)
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: placeholderImageHorizontalPadding ?? 0),
+                    child: Image.asset(
+                      placeholderImage!,
+                      height: placeholderImageHeight ?? 32,
+                      width: placeholderImageWidth ?? 32,
+                    ),
                   ),
-              enabledBorder: enabledInputBorder ??
-                  OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(color: Colors.transparent),
+                if ((placeholderText ?? '').isNotEmpty)
+                  Text(
+                    placeholderText!,
+                    style: placeholderTextStyle ?? TextStyle(fontSize: 12, color: Colors.black),
                   ),
-              border: border ??
-                  OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(color: Colors.transparent),
-                  ),
-              hintText: hintText,
-              disabledBorder: disabledInputBorder ??
-                  OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(color: Colors.transparent),
-                  ),
+                if (suffixLabel != null) suffixLabel!
+              ],
             ),
           ),
-        ),
-        (errorMessage != null && errorMessage != "")
-            ? Padding(
-                padding:
-                   const EdgeInsetsDirectional.only(top: 6, bottom: 6, start: 0),
-                child: Text(
-                  errorMessage ?? "",
-                  style: const TextStyle(
-                      fontSize: 12,
+        SizedBox(
+          width: fieldWidth ?? double.infinity,
+          child: Padding(
+            padding: EdgeInsets.only(bottom: bottomFieldMargin ?? 0),
+            child: TextFormField(
+              readOnly: readOnly ?? false,
+              cursorColor: cursorColor ?? Colors.black,
+              controller: textEditingController,
+              style: fieldTextStyle ?? TextStyle(
+                fontSize: 14,color: Colors.black
+              ),
+              textAlign: TextAlign.start,
+              textAlignVertical: TextAlignVertical.center,
+              maxLines: maxLines ?? 1,
+              maxLength: maxLength ?? 1000,
+              enableInteractiveSelection: enableInteractiveSelection ?? true,
+              obscureText: obscureText ?? false,
+              inputFormatters: textInputFormatter,
+              onChanged: onChanged,
+              textInputAction: textInputAction ?? TextInputAction.next,
+              keyboardType: textInputType ?? TextInputType.text,
+              textCapitalization: textCapitalization ?? TextCapitalization.none,
+              decoration: InputDecoration(
+                  errorMaxLines: 3,
+                  enabled: isEnable ?? true,
+                  counterText: '',
+                  filled: true,
+                  fillColor: backgroundColor ?? Colors.transparent,
+                  suffixIcon: suffixWidget != null
+                      ? Padding(
+                      padding: const EdgeInsets.all(2), child: suffixWidget)
+                      : null,
+                  prefixIcon: prefixWidget,
+                  contentPadding: contentPadding ?? EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey,
+                      width: borderWidth ?? 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: borderRadius ?? BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: borderColor ?? Colors.grey,
+                      width: borderWidth ?? 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: borderRadius ?? BorderRadius.circular(10),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
                       color: Colors.red,
-                      fontWeight: FontWeight.w400),
-                ),
-              )
-            : Container()
+                      width: borderWidth ?? 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: borderRadius ?? BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: borderColor ?? Colors.grey,
+                      width: borderWidth ?? 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: borderRadius ?? BorderRadius.circular(10),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.red,
+                      width: borderWidth ?? 1,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: borderRadius ?? BorderRadius.circular(10),
+                  ),
+                  border: InputBorder.none,
+                  hintText: hintText,
+                  alignLabelWithHint: true,
+                  hintStyle: hintTextStyle),
+              onFieldSubmitted: (text) {
+                textEditingController.text = text;
+              },
+              validator: validator,
+            ),
+          ),
+        )
       ],
     );
   }
 }
+/*
+Widget Usage
+
+CommonInputFormField(
+  textEditingController: _mobileController,
+  suffixWidget: Image.asset(Assets.imagesIcApple),
+  validator: validateEmail,
+  backgroundColor: AppColors.pinch,
+  prefixWidget: Image.asset(Assets.imagesIcApple),
+  placeholderImage: Assets.imagesIcApple,
+  placeholderText: 'Mobile Number',
+)
+*/
