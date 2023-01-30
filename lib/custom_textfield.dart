@@ -40,41 +40,41 @@ class CommonInputFormField extends StatelessWidget {
 
   const CommonInputFormField(
       {Key? key,
-        required this.textEditingController,
-        required this.validator,
-        this.placeholderImage,
-        this.placeholderImageHeight,
-        this.placeholderImageWidth,
-        this.placeholderImageHorizontalPadding,
-        this.placeholderText,
-        this.placeholderTextStyle,
-        this.hintText,
-        this.hintTextStyle,
-        this.fieldWidth,
-        this.backgroundColor,
-        this.borderColor,
-        this.borderWidth,
-        this.borderRadius,
-        this.fieldTextStyle,
-        this.maxLines,
-        this.maxLength,
-        this.textInputFormatter,
-        this.textInputAction,
-        this.textInputType,
-        this.textCapitalization,
-        this.isEnable,
-        this.prefixWidget,
-        this.suffixWidget,
-        this.inputDecoration,
-        this.obscureText,
-        this.bottomFieldMargin,
-        this.onChanged,
-        this.suffixLabel,
-        this.cursorColor,
-        this.enableInteractiveSelection,
-        this.readOnly,
-        this.contentPadding,
-        this.placeholderBottom})
+      required this.textEditingController,
+      required this.validator,
+      this.placeholderImage,
+      this.placeholderImageHeight,
+      this.placeholderImageWidth,
+      this.placeholderImageHorizontalPadding,
+      this.placeholderText,
+      this.placeholderTextStyle,
+      this.hintText,
+      this.hintTextStyle,
+      this.fieldWidth,
+      this.backgroundColor,
+      this.borderColor,
+      this.borderWidth,
+      this.borderRadius,
+      this.fieldTextStyle,
+      this.maxLines,
+      this.maxLength,
+      this.textInputFormatter,
+      this.textInputAction,
+      this.textInputType,
+      this.textCapitalization,
+      this.isEnable,
+      this.prefixWidget,
+      this.suffixWidget,
+      this.inputDecoration,
+      this.obscureText,
+      this.bottomFieldMargin,
+      this.onChanged,
+      this.suffixLabel,
+      this.cursorColor,
+      this.enableInteractiveSelection,
+      this.readOnly,
+      this.contentPadding,
+      this.placeholderBottom})
       : super(key: key);
 
   @override
@@ -102,7 +102,8 @@ class CommonInputFormField extends StatelessWidget {
                 if ((placeholderText ?? '').isNotEmpty)
                   Text(
                     placeholderText!,
-                    style: placeholderTextStyle ?? const TextStyle(fontSize: 12, color: Colors.black),
+                    style: placeholderTextStyle ??
+                        const TextStyle(fontSize: 12, color: Colors.black),
                   ),
                 if (suffixLabel != null) suffixLabel!
               ],
@@ -116,9 +117,8 @@ class CommonInputFormField extends StatelessWidget {
               readOnly: readOnly ?? false,
               cursorColor: cursorColor ?? Colors.black,
               controller: textEditingController,
-              style: fieldTextStyle ?? const TextStyle(
-                fontSize: 14,color: Colors.black
-              ),
+              style: fieldTextStyle ??
+                  const TextStyle(fontSize: 14, color: Colors.black),
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
               maxLines: maxLines ?? 1,
@@ -138,13 +138,14 @@ class CommonInputFormField extends StatelessWidget {
                   fillColor: backgroundColor ?? Colors.transparent,
                   suffixIcon: suffixWidget != null
                       ? Padding(
-                      padding: const EdgeInsets.all(2), child: suffixWidget)
+                          padding: const EdgeInsets.all(2), child: suffixWidget)
                       : null,
                   prefixIcon: prefixWidget,
-                  contentPadding: contentPadding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  contentPadding: contentPadding ??
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   disabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.grey,
+                      color: borderColor ?? Colors.grey,
                       width: borderWidth ?? 1,
                       style: BorderStyle.solid,
                     ),
