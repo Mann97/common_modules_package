@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 class CommonInputFormField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String? Function(String?)? validator;
-
   final String? placeholderImage;
   final double? placeholderImageHeight;
   final double? placeholderImageWidth;
@@ -86,7 +85,7 @@ class CommonInputFormField extends StatelessWidget {
         if (((placeholderImage ?? '').isNotEmpty) ||
             ((placeholderText ?? '').isNotEmpty))
           Padding(
-            padding: placeholderBottom ?? EdgeInsets.only(bottom: 8),
+            padding: placeholderBottom ?? const EdgeInsets.only(bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -103,7 +102,7 @@ class CommonInputFormField extends StatelessWidget {
                 if ((placeholderText ?? '').isNotEmpty)
                   Text(
                     placeholderText!,
-                    style: placeholderTextStyle ?? TextStyle(fontSize: 12, color: Colors.black),
+                    style: placeholderTextStyle ?? const TextStyle(fontSize: 12, color: Colors.black),
                   ),
                 if (suffixLabel != null) suffixLabel!
               ],
@@ -117,7 +116,7 @@ class CommonInputFormField extends StatelessWidget {
               readOnly: readOnly ?? false,
               cursorColor: cursorColor ?? Colors.black,
               controller: textEditingController,
-              style: fieldTextStyle ?? TextStyle(
+              style: fieldTextStyle ?? const TextStyle(
                 fontSize: 14,color: Colors.black
               ),
               textAlign: TextAlign.start,
@@ -142,7 +141,7 @@ class CommonInputFormField extends StatelessWidget {
                       padding: const EdgeInsets.all(2), child: suffixWidget)
                       : null,
                   prefixIcon: prefixWidget,
-                  contentPadding: contentPadding ?? EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  contentPadding: contentPadding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                   disabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey,
