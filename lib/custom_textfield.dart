@@ -19,6 +19,7 @@ class CommonInputFormField extends StatelessWidget {
   final BorderRadius? borderRadius;
   final TextStyle? fieldTextStyle;
   final int? maxLines;
+  final int? minLines;
   final int? maxLength;
   final List<TextInputFormatter>? textInputFormatter;
   final TextInputAction? textInputAction;
@@ -70,6 +71,7 @@ class CommonInputFormField extends StatelessWidget {
         this.bottomFieldMargin,
         this.onChanged,
         this.suffixLabel,
+        this.minLines,
         this.cursorColor,
         this.enableInteractiveSelection,
         this.readOnly,
@@ -121,6 +123,7 @@ class CommonInputFormField extends StatelessWidget {
                   const TextStyle(fontSize: 14, color: Colors.black),
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
+              minLines: minLines ?? 1,
               maxLines: maxLines ?? 1,
               maxLength: maxLength ?? 1000,
               enableInteractiveSelection: enableInteractiveSelection ?? true,
