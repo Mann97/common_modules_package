@@ -28,9 +28,41 @@ start using the package.
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder.
 
-```dart
-const like = 'sample';
-```
+Modularisation
+
+Modular programming is a software design technique to separate functionality into independent, interchangeable module, so that each contains everything necessary to execute a specific functionality.
+
+How to use :
+
+First, we need to get the git url for this repo and then we will add this url to our pubspec.yaml file.
+
+like this,
+
+  common_modules_package:
+    git:
+      url: https://github.com/Mann97/common_modules_package.git
+      
+After adding this to our yaml file we can directly access all those functionalities which is available in the repo.
+
+  //CommonInputFormField(
+  // textEditingController: TextEditingController(),
+  // // validator: validateText,
+  // validator: (value) {
+  // if (validateText(value) == null) {
+  // return null;
+  // } else {
+  // return 'Key_enterValidRegion';
+  // }
+  // },
+  // )
+  
+  Note : For import we can use 
+  
+  this -> import 'package:common_modules_package/common_modules_package.dart';
+  
+  instead of
+  
+  this -> import 'package:common_modules_package/custom_textfield.dart'; 
 
 ## Additional information
 
