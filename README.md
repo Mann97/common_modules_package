@@ -43,18 +43,18 @@ like this,
       url: https://github.com/Mann97/common_modules_package.git
       
 After adding this to our yaml file we can directly access all those functionalities which is available in the repo.
+
 CommonInputFormField(
-          textEditingController: TextEditingController(),
-          // validator: validateText,
-          validator: (value) {
-            if (validateText(value) == null) {
-              return null;
-            } else {
-              return 'Key_enterValidRegion';
-            }
-          },
-        )
-        
+textEditingController: TextEditingController(),
+// validator: validateText,
+validator: (value) {
+if (validateText(value) == null) {
+return null;
+} else {
+return 'Key_enterValidRegion';
+}
+},
+)
   
   Note : For import we will use 
   
