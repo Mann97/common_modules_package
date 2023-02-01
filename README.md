@@ -56,7 +56,7 @@ After adding this to our yaml file we can directly access all those functionalit
   // },
   // )
   
-  Note : For import we can use 
+  Note : For import we will use 
   
   this -> import 'package:common_modules_package/common_modules_package.dart';
   
